@@ -1,5 +1,6 @@
 package com.example.testtask.api;
 
+import com.example.testtask.auth.JWTHelper;
 import com.example.testtask.dao.EmailData;
 import com.example.testtask.service.EmailService;
 import org.springframework.http.HttpStatus;
@@ -20,7 +21,7 @@ public class EmailController {
     @PostMapping
     public EmailResponse create(@RequestBody EmailRequest request,
                                 JwtAuthenticationToken jwtToken) {
-        Long userId = (Long) jwtToken.getTokenAttributes().get("userId");
+        Long userId = JWTHelper.extractUserId(jwtToken);
         EmailData emailData = emailService.create(userId, request.email());
         return new EmailResponse(emailData);
     }
@@ -29,7 +30,7 @@ public class EmailController {
     public EmailResponse update(@PathVariable("id") Long emailId,
                                 @RequestBody EmailRequest request,
                                 JwtAuthenticationToken jwtToken) {
-        Long userId = (Long) jwtToken.getTokenAttributes().get("userId");
+        Long userId = JWTHelper.extractUserId(jwtToken);
         EmailData emailData = emailService.update(userId, emailId, request.email());
         return new EmailResponse(emailData);
     }
@@ -37,7 +38,7 @@ public class EmailController {
     @DeleteMapping("/{id}")
     public void delete(@PathVariable("id") Long emailId,
                        JwtAuthenticationToken jwtToken) {
-        Long userId = (Long) jwtToken.getTokenAttributes().get("userId");
+        Long userId = JWTHelper.extractUserId(jwtToken);
         emailService.delete(userId, emailId);
     }
 }

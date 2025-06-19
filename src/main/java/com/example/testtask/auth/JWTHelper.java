@@ -1,6 +1,7 @@
 package com.example.testtask.auth;
 
 import io.jsonwebtoken.Jwts;
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 
 import java.io.IOException;
 import java.security.Key;
@@ -29,7 +30,7 @@ public class JWTHelper {
                 .compact();
     }
 
-    public static Long extractUserId(String token) {
-        return 1L;
+    public static Long extractUserId(JwtAuthenticationToken jwtToken) {
+        return (Long) jwtToken.getTokenAttributes().get("userId");
     }
 }

@@ -1,5 +1,6 @@
 package com.example.testtask.api;
 
+import com.example.testtask.auth.JWTHelper;
 import com.example.testtask.dao.PhoneData;
 import com.example.testtask.service.PhoneService;
 import org.springframework.http.HttpStatus;
@@ -19,7 +20,7 @@ public class PhoneController {
     @PostMapping
     public PhoneResponse create(@RequestBody PhoneRequest request,
                                 JwtAuthenticationToken jwtToken) {
-        Long userId = (Long) jwtToken.getTokenAttributes().get("userId");
+        Long userId = JWTHelper.extractUserId(jwtToken);
         PhoneData phoneData = phoneService.create(userId, request.phone());
         return new PhoneResponse(phoneData);
     }
@@ -28,7 +29,7 @@ public class PhoneController {
     public PhoneResponse update(@PathVariable("id") Long phoneId,
                                 @RequestBody PhoneRequest request,
                                 JwtAuthenticationToken jwtToken) {
-        Long userId = (Long) jwtToken.getTokenAttributes().get("userId");
+        Long userId = JWTHelper.extractUserId(jwtToken);
         PhoneData phoneData = phoneService.update(userId, phoneId, request.phone());
         return new PhoneResponse(phoneData);
     }
@@ -36,7 +37,7 @@ public class PhoneController {
     @DeleteMapping("/{id}")
     public void delete(@PathVariable("id") Long phoneId,
                        JwtAuthenticationToken jwtToken) {
-        Long userId = (Long) jwtToken.getTokenAttributes().get("userId");
+        Long userId = JWTHelper.extractUserId(jwtToken);
         phoneService.delete(userId, phoneId);
     }
 }
