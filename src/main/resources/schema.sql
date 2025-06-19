@@ -1,0 +1,34 @@
+CREATE TABLE public.user (
+	id int8 GENERATED ALWAYS AS IDENTITY( INCREMENT BY 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 1 CACHE 1 NO CYCLE) NOT NULL,
+	name varchar(500) NOT NULL,
+	date_of_birth date NOt NULL,
+	password varchar(500) NOT NULL,
+	CONSTRAINT user_pkey PRIMARY KEY (id)
+);
+
+CREATE TABLE public.account (
+	id int8 GENERATED ALWAYS AS IDENTITY( INCREMENT BY 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 1 CACHE 1 NO CYCLE) NOT NULL,
+	user_id int8 NOT NULL REFERENCES public.user(id),
+	ballance decimal NOT NULL,
+	CONSTRAINT account_pkey PRIMARY KEY (id),
+	CONSTRAINT ballance_positive check (ballance >= 0)
+);
+
+CREATE TABLE public.email_data (
+	id int8 GENERATED ALWAYS AS IDENTITY( INCREMENT BY 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 1 CACHE 1 NO CYCLE) NOT NULL,
+	user_id int8 NOT NULL REFERENCES public.user(id),
+	email varchar(200) NOT NULL,
+	CONSTRAINT email_data_pkey PRIMARY KEY (id),
+	CONSTRAINT email_data_unique UNIQUE (email)
+);
+
+CREATE TABLE public.phone_data (
+	id int8 GENERATED ALWAYS AS IDENTITY( INCREMENT BY 1 MINVALUE 1 MAXVALUE 9223372036854775807 START 1 CACHE 1 NO CYCLE) NOT NULL,
+	user_id int8 NOT NULL REFERENCES public.user(id),
+	phone varchar(13) NOT NULL,
+	CONSTRAINT phone_data_pkey PRIMARY KEY (id),
+	CONSTRAINT phone_data_unique UNIQUE (phone)
+);
+
+
+

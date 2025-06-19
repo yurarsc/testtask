@@ -1,0 +1,36 @@
+package com.example.testtask.api;
+
+import com.example.testtask.dao.EmailData;
+import com.example.testtask.dao.PhoneData;
+import com.example.testtask.dao.User;
+
+import java.time.LocalDate;
+import java.util.List;
+
+public record UserResponse(Long id,
+                           String name,
+                           LocalDate dateOfBirth,
+                           List<EmailResponse> emails,
+                           List<PhoneResponse> phones) {
+    public UserResponse(User user) {
+        this(user.getId(),
+                user.getName(),
+                user.getDateOfBirth(),
+                emailResponses(user.getEmails()),
+                phoneResponses(user.getPhones())
+        );
+    }
+
+    private static List<EmailResponse> emailResponses(List<EmailData> emailData) {
+        return emailData.stream()
+                .map(it -> new EmailResponse(it.getId(), it.getEmail()))
+                .toList();
+    }
+
+    private static List<PhoneResponse> phoneResponses(List<PhoneData> phoneData) {
+        return phoneData.stream()
+                .map(it -> new PhoneResponse(it.getId(), it.getPhone()))
+                .toList();
+    }
+
+}
