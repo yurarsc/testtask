@@ -23,7 +23,7 @@ public class EmailService {
     public EmailData create(Long userId, String email) {
         Optional<User> optUser = userRepository.findById(userId);
         if (optUser.isEmpty()) {
-            throw new RuntimeException("user not found");
+            throw new RequestException("user not found");
         }
         User user = optUser.get();
         EmailData entity = new EmailData(user, email);
@@ -33,14 +33,14 @@ public class EmailService {
     public EmailData update(Long userId, Long emailId, String email) {
         Optional<User> optUser = userRepository.findById(userId);
         if (optUser.isEmpty()) {
-            throw new RuntimeException("user not found");
+            throw new RequestException("user not found");
         }
         User user = optUser.get();
         Optional<EmailData> optEmailData = user.getEmails().stream()
                 .filter(it -> it.getId().equals(emailId))
                 .findFirst();
         if (optEmailData.isEmpty()) {
-            throw new RuntimeException("email not found");
+            throw new RequestException("email not found");
         }
         EmailData emailData = optEmailData.get();
         emailData.setEmail(email);
@@ -50,7 +50,7 @@ public class EmailService {
     public void delete(Long userId, Long emailId) {
         Optional<User> optUser = userRepository.findById(userId);
         if (optUser.isEmpty()) {
-            throw new RuntimeException("user not found");
+            throw new RequestException("user not found");
         }
         emailRepository.deleteById(emailId);
     }
