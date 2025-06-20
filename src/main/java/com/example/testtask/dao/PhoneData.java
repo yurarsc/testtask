@@ -41,27 +41,4 @@ public class PhoneData {
     public void setPhone(String phone) {
         this.phone = phone;
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        PhoneData phoneData = (PhoneData) o;
-        return Objects.equals(id, phoneData.id)
-                && Objects.equals(user.getId(), phoneData.user.getId())
-                && Objects.equals(phone, phoneData.phone);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, user.getId(), phone);
-    }
-
-    @Override
-    public String toString() {
-        return "PhoneData{" +
-                "id=" + id +
-                ", user=" + user.getId() +
-                ", phone='" + phone + '\'' +
-                '}';
-    }
 }

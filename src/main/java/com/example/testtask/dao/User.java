@@ -1,9 +1,6 @@
 package com.example.testtask.dao;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -24,6 +21,9 @@ public class User {
 
     @OneToMany(mappedBy = "user")
     private List<PhoneData> phones;
+
+    @OneToOne(mappedBy = "user")
+    private Account account;
 
     public Long getId() {
         return id;
@@ -73,6 +73,14 @@ public class User {
         this.phones = phones;
     }
 
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+
     public List<String> emailsAsStrings() {
         return getEmails().stream()
                 .map(EmailData::getEmail)
@@ -84,34 +92,5 @@ public class User {
                 .map(PhoneData::getPhone)
                 .toList();
 
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return Objects.equals(id, user.id)
-                && Objects.equals(name, user.name)
-                && Objects.equals(dateOfBirth, user.dateOfBirth)
-                && Objects.equals(password, user.password)
-                && Objects.equals(emailsAsStrings(), user.emailsAsStrings())
-                && Objects.equals(phonesAsStrings(), user.phonesAsStrings());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, dateOfBirth, password, emailsAsStrings(), phonesAsStrings());
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", dateOfBirth=" + dateOfBirth +
-                ", password='" + password + '\'' +
-                ", emails=" + emailsAsStrings() +
-                ", phones=" + phonesAsStrings() +
-                '}';
     }
 }

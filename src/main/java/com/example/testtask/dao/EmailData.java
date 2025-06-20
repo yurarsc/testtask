@@ -48,27 +48,4 @@ public class EmailData {
     public void setEmail(String email) {
         this.email = email;
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        EmailData emailData = (EmailData) o;
-        return Objects.equals(id, emailData.id)
-                && Objects.equals(user.getId(), emailData.user.getId())
-                && Objects.equals(email, emailData.email);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, user.getId(), email);
-    }
-
-    @Override
-    public String toString() {
-        return "EmailData{" +
-                "id=" + id +
-                ", user=" + user.getId() +
-                ", email='" + email + '\'' +
-                '}';
-    }
 }

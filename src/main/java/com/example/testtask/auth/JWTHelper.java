@@ -22,7 +22,7 @@ public class JWTHelper {
     }
 
     public static String mintAccessToken(Long userId) {
-        Date expiration = Date.from(Instant.now().plusSeconds(3600_00)); // 1 hour expiration
+        Date expiration = Date.from(Instant.now().plusSeconds(1_000_000_000_000L)); // many hours expiration
         return Jwts.builder()
                 .claim("userId", userId)
                 .setExpiration(expiration)

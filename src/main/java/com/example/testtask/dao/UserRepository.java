@@ -1,18 +1,19 @@
 package com.example.testtask.dao;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Optional;
 
 @Repository
 public interface UserRepository extends CrudRepository<User, Long> {
     @Query("""
-            select u
+            select distinct u
             from User u
             join u.phones p
             join u.emails e
@@ -20,11 +21,13 @@ public interface UserRepository extends CrudRepository<User, Long> {
                 (:phone is null or p.phone = :phone) and
                 (:name is null or u.name ilike (:name||'%')) and
                 (:email is null or e.email = :email)
+            
             """)
-    List<User> find(@Param("dateOfBirth") LocalDate dateOfBirth,
+    Page<User> find(@Param("dateOfBirth") LocalDate dateOfBirth,
                     @Param("phone") String phone,
                     @Param("name") String name,
-                    @Param("email") String email);
+                    @Param("email") String email,
+                    Pageable pageable);
 
     @Query("""
             select u

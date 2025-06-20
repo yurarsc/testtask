@@ -3,6 +3,7 @@ package com.example.testtask.api;
 import com.example.testtask.auth.JWTHelper;
 import com.example.testtask.dao.PhoneData;
 import com.example.testtask.service.PhoneService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +19,7 @@ public class PhoneController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public PhoneResponse create(@RequestBody PhoneRequest request,
+    public PhoneResponse create(@Valid @RequestBody PhoneRequest request,
                                 JwtAuthenticationToken jwtToken) {
         Long userId = JWTHelper.extractUserId(jwtToken);
         PhoneData phoneData = phoneService.create(userId, request.phone());
@@ -27,7 +28,7 @@ public class PhoneController {
 
     @PutMapping("/{id}")
     public PhoneResponse update(@PathVariable("id") Long phoneId,
-                                @RequestBody PhoneRequest request,
+                                @Valid @RequestBody PhoneRequest request,
                                 JwtAuthenticationToken jwtToken) {
         Long userId = JWTHelper.extractUserId(jwtToken);
         PhoneData phoneData = phoneService.update(userId, phoneId, request.phone());

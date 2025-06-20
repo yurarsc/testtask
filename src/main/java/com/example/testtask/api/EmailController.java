@@ -3,6 +3,7 @@ package com.example.testtask.api;
 import com.example.testtask.auth.JWTHelper;
 import com.example.testtask.dao.EmailData;
 import com.example.testtask.service.EmailService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +20,7 @@ public class EmailController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public EmailResponse create(@RequestBody EmailRequest request,
+    public EmailResponse create(@Valid @RequestBody EmailRequest request,
                                 JwtAuthenticationToken jwtToken) {
         Long userId = JWTHelper.extractUserId(jwtToken);
         EmailData emailData = emailService.create(userId, request.email());
@@ -28,7 +29,7 @@ public class EmailController {
 
     @PutMapping("/{id}")
     public EmailResponse update(@PathVariable("id") Long emailId,
-                                @RequestBody EmailRequest request,
+                                @Valid @RequestBody EmailRequest request,
                                 JwtAuthenticationToken jwtToken) {
         Long userId = JWTHelper.extractUserId(jwtToken);
         EmailData emailData = emailService.update(userId, emailId, request.email());

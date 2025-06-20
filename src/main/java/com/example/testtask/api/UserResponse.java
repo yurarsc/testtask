@@ -4,6 +4,7 @@ import com.example.testtask.dao.EmailData;
 import com.example.testtask.dao.PhoneData;
 import com.example.testtask.dao.User;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -11,13 +12,15 @@ public record UserResponse(Long id,
                            String name,
                            LocalDate dateOfBirth,
                            List<EmailResponse> emails,
-                           List<PhoneResponse> phones) {
+                           List<PhoneResponse> phones,
+                           BigDecimal balance) {
     public UserResponse(User user) {
         this(user.getId(),
                 user.getName(),
                 user.getDateOfBirth(),
                 emailResponses(user.getEmails()),
-                phoneResponses(user.getPhones())
+                phoneResponses(user.getPhones()),
+                user.getAccount().getBallance()
         );
     }
 
