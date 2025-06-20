@@ -1,15 +1,17 @@
-package com.example.testtask;
+package com.example.testtask.service;
 
-import com.example.testtask.service.AccountService;
+import com.example.testtask.ScheduledTask;
 import org.hibernate.exception.GenericJDBCException;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.testcontainers.containers.PostgreSQLContainer;
 
 import java.math.BigDecimal;
@@ -43,6 +45,9 @@ class AccountServiceTests {
 		registry.add("spring.datasource.password", postgres::getPassword);
 	}
 
+	@MockitoBean
+	private ScheduledTask scheduledTask;
+
 	@Autowired
 	AccountService accountService;
 
@@ -54,7 +59,6 @@ class AccountServiceTests {
 		accountService.transfer(userIdFrom, userIdTo, amount);
 	}
 
-
 	@Test
 	void shouldFailTransferDueToBalanceNotEnough() {
 		Long userIdFrom = 1L;
@@ -63,7 +67,6 @@ class AccountServiceTests {
 		Exception thrown = assertThrows(GenericJDBCException.class,
 				() -> accountService.transfer(userIdFrom, userIdTo, amount),
 				"Expected exception");
-
 		assertTrue(thrown.getMessage().contains("account balance 100 not enough for transfer: 1000"));
 	}
 

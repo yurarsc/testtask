@@ -1,6 +1,5 @@
-package com.example.testtask;
+package com.example.testtask.api;
 
-import com.example.testtask.api.EmailRequest;
 import com.example.testtask.dao.UserRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.AfterAll;
