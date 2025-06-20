@@ -33,7 +33,9 @@ public class ScheduledTask {
     @Scheduled(fixedRate = 30_000)
     public void fixedRateTask() {
         accounts.forEach((id, balance) -> {
-            accountService.updateBalanceMax(id, balance * 2.07);
+
+            BigDecimal max = balance.multiply(BigDecimal.valueOf(2.07));
+            accountService.updateBalanceMax(id, max);
         });
     }
 }

@@ -27,11 +27,11 @@ public class AccountService {
     }
 
     @Transactional
-    public void updateBalanceMax(Long id, double max) {
+    public void updateBalanceMax(Long id, BigDecimal max) {
         StoredProcedureQuery query = entityManager.createStoredProcedureQuery("update_balance_max");
 
         query.registerStoredProcedureParameter("account_id", Long.class, ParameterMode.IN);
-        query.registerStoredProcedureParameter("max_value", Double.class, ParameterMode.IN);
+        query.registerStoredProcedureParameter("max_value", BigDecimal.class, ParameterMode.IN);
 
         query.setParameter("account_id", id);
         query.setParameter("max_value", max);
