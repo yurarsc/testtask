@@ -34,7 +34,7 @@ curl http://localhost:8080/auth \
 
 Отправить запрос для поиска пользователей:
 ```
-curl localhost:8080/users \
+curl 'localhost:8080/users?email=jane%40example.com' \
     --header 'X-Page-Number: 0' \
     --header 'X-Page-Size: 10' \
     --header 'Authorization: Bearer eyJhbGciOiJSUzI1NiJ9.eyJ1c2VySWQiOjEsImV4cCI6MTc1MDc3OTM2OH0.o2w_JBWPNpa3yaTDUxn3dFEi872_V4ulPuloXhpDKrI21S8qfSCZbvl0Yq_nHXhT7q3EfxrC4pBOcrlxv3SwlhvpDdZ6mhy3plLkC4GHg6ON4_djWGXy1a4sBj28QvxmF5LPqNVE1YN_i_EDucAGGNmh_TPexuPzxtNMSorcxWGIz7z3C-AMe39B9FAtglYm985-hGhSiy-8vUvmWArJpUYgy1-b6FsTiTbSkJBCMYMFgtbXgRjfpz2pzySJYmld758dGOLjzYEEDTFcoDUK-Bmh6O28HMIY1Zq8ltR3CLskUiR9ZVn2WzNLpMIpFH4zRb9qDiiavkMPSsBVrCP6Jw' 
