@@ -2,8 +2,6 @@ package com.example.testtask.dao;
 
 import jakarta.persistence.*;
 
-import java.util.Objects;
-
 @Entity
 @Table(name = "phone_data", schema = "public")
 public class PhoneData {

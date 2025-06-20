@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Objects;
 
 @Entity
 @Table(name = "user", schema = "public")
@@ -79,18 +78,5 @@ public class User {
 
     public void setAccount(Account account) {
         this.account = account;
-    }
-
-    public List<String> emailsAsStrings() {
-        return getEmails().stream()
-                .map(EmailData::getEmail)
-                .toList();
-    }
-
-    public List<String> phonesAsStrings() {
-        return getPhones().stream()
-                .map(PhoneData::getPhone)
-                .toList();
-
     }
 }

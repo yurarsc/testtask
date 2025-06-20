@@ -4,7 +4,6 @@ import com.example.testtask.auth.JWTHelper;
 import com.example.testtask.dao.User;
 import com.example.testtask.service.UserService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
