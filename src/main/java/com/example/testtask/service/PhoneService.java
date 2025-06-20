@@ -1,5 +1,6 @@
 package com.example.testtask.service;
 
+import com.example.testtask.cache.CacheHelper;
 import com.example.testtask.dao.*;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +24,11 @@ public class PhoneService {
         }
         User user = optUser.get();
         PhoneData entity = new PhoneData(user, phone);
-        return phoneRepository.save(entity);
+        PhoneData saved = phoneRepository.save(entity);
+
+        CacheHelper.cleanUser(userId);
+
+        return saved;
     }
 
     public PhoneData update(Long userId, Long phoneId, String phone) {
@@ -40,7 +45,11 @@ public class PhoneService {
         }
         PhoneData phoneData = optPhoneData.get();
         phoneData.setPhone(phone);
-        return phoneRepository.save(phoneData);
+        PhoneData saved = phoneRepository.save(phoneData);
+
+        CacheHelper.cleanUser(userId);
+
+        return saved;
     }
 
     public void delete(Long userId, Long phoneId) {
@@ -49,5 +58,7 @@ public class PhoneService {
             throw new RequestException("user not found");
         }
         phoneRepository.deleteById(phoneId);
+
+        CacheHelper.cleanUser(userId);
     }
 }

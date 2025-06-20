@@ -1,5 +1,6 @@
 package com.example.testtask.service;
 
+import com.example.testtask.cache.CacheHelper;
 import com.example.testtask.dao.Account;
 import com.example.testtask.dao.AccountRepository;
 import jakarta.persistence.EntityManager;
@@ -37,6 +38,9 @@ public class AccountService {
         query.setParameter("max_value", max);
 
         query.execute();
+
+        Optional<Account> optAccount = accountRepository.findById(id);
+        optAccount.ifPresent(account -> CacheHelper.cleanUser(account.getUser().getId()));
     }
 
     @Transactional(isolation = Isolation.SERIALIZABLE)
@@ -52,5 +56,8 @@ public class AccountService {
         query.setParameter("amount", amount);
 
         query.execute();
+
+        CacheHelper.cleanUser(userIdFrom);
+        CacheHelper.cleanUser(userIdTo);
     }
 }

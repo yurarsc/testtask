@@ -22,7 +22,6 @@ public class PEMHelper  {
     }
 
     public static PrivateKey loadPrivateKey(URL url) throws IOException, NoSuchAlgorithmException, InvalidKeySpecException {
-        System.out.println("url " + url);
         byte[] rsaPK = loadPEM(url);
         PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(rsaPK);
         KeyFactory keyFactory = KeyFactory.getInstance("RSA");

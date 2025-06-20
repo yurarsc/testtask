@@ -1,5 +1,6 @@
 package com.example.testtask.service;
 
+import com.example.testtask.cache.CacheHelper;
 import com.example.testtask.dao.EmailData;
 import com.example.testtask.dao.EmailRepository;
 import com.example.testtask.dao.User;
@@ -27,7 +28,11 @@ public class EmailService {
         }
         User user = optUser.get();
         EmailData entity = new EmailData(user, email);
-        return emailRepository.save(entity);
+        EmailData saved = emailRepository.save(entity);
+
+        CacheHelper.cleanUser(userId);
+
+        return saved;
     }
 
     public EmailData update(Long userId, Long emailId, String email) {
@@ -44,7 +49,11 @@ public class EmailService {
         }
         EmailData emailData = optEmailData.get();
         emailData.setEmail(email);
-        return emailRepository.save(emailData);
+        EmailData saved = emailRepository.save(emailData);
+
+        CacheHelper.cleanUser(userId);
+
+        return saved;
     }
 
     public void delete(Long userId, Long emailId) {
@@ -53,5 +62,7 @@ public class EmailService {
             throw new RequestException("user not found");
         }
         emailRepository.deleteById(emailId);
+
+        CacheHelper.cleanUser(userId);
     }
 }
