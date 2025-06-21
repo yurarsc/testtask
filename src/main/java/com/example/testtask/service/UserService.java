@@ -10,7 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
@@ -22,7 +22,7 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public Page<User> findUser(LocalDate dateOfBirth,
+    public Page<User> findUser(LocalDateTime dateOfBirth,
                                String phone,
                                String name,
                                String email,

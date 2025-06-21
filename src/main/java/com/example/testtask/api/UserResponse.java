@@ -5,12 +5,12 @@ import com.example.testtask.dao.PhoneData;
 import com.example.testtask.dao.User;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public record UserResponse(Long id,
                            String name,
-                           LocalDate dateOfBirth,
+                           LocalDateTime dateOfBirth,
                            List<EmailResponse> emails,
                            List<PhoneResponse> phones,
                            BigDecimal balance) {

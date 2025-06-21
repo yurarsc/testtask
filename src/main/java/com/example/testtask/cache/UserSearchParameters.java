@@ -2,11 +2,11 @@ package com.example.testtask.cache;
 
 import org.springframework.data.domain.Pageable;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
-public record UserSearchParameters(LocalDate dateOfBirth,
+public record UserSearchParameters(LocalDateTime dateOfBirth,
                                    String phone,
                                    String name,
                                    String email,

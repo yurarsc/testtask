@@ -7,7 +7,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Repository
@@ -17,13 +17,13 @@ public interface UserRepository extends CrudRepository<User, Long> {
             from User u
             join u.phones p
             join u.emails e
-            where  (:dateOfBirth is null or u.dateOfBirth >= :dateOfBirth) and
+            where (TRUE = :#{#dateOfBirth == null} or u.dateOfBirth >= :dateOfBirth) and
                 (:phone is null or p.phone = :phone) and
                 (:name is null or u.name ilike (:name||'%')) and
                 (:email is null or e.email = :email)
             
             """)
-    Page<User> find(@Param("dateOfBirth") LocalDate dateOfBirth,
+    Page<User> find(@Param("dateOfBirth") LocalDateTime dateOfBirth,
                     @Param("phone") String phone,
                     @Param("name") String name,
                     @Param("email") String email,
