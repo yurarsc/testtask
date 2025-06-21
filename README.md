@@ -93,3 +93,10 @@ PUT /emails/{id} - обновить email, тело запроса:
 
 DELETE /emails/{id} - удалить email
 
+POST /accounts/transfer - перевод средств, тело запроса:
+```
+{
+    "userIdTo": 2,
+    "amount": 100
+}
+```
