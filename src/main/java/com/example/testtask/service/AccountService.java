@@ -1,7 +1,7 @@
 package com.example.testtask.service;
 
 import com.example.testtask.cache.CacheHelper;
-import com.example.testtask.dao.Account;
+import com.example.testtask.dao.entities.Account;
 import com.example.testtask.dao.AccountRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.ParameterMode;

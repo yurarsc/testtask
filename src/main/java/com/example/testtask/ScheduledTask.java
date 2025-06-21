@@ -1,6 +1,6 @@
 package com.example.testtask;
 
-import com.example.testtask.dao.Account;
+import com.example.testtask.dao.entities.Account;
 import com.example.testtask.service.AccountService;
 import jakarta.annotation.PostConstruct;
 import org.springframework.scheduling.annotation.Scheduled;

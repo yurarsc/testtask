@@ -2,7 +2,7 @@ package com.example.testtask.service;
 
 import com.example.testtask.cache.CacheHelper;
 import com.example.testtask.cache.UserSearchParameters;
-import com.example.testtask.dao.User;
+import com.example.testtask.dao.entities.User;
 import com.example.testtask.dao.UserRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

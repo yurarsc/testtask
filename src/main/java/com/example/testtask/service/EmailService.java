@@ -1,9 +1,9 @@
 package com.example.testtask.service;
 
 import com.example.testtask.cache.CacheHelper;
-import com.example.testtask.dao.EmailData;
+import com.example.testtask.dao.entities.EmailData;
 import com.example.testtask.dao.EmailRepository;
-import com.example.testtask.dao.User;
+import com.example.testtask.dao.entities.User;
 import com.example.testtask.dao.UserRepository;
 import org.springframework.stereotype.Service;
 

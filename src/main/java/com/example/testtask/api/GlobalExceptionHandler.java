@@ -1,5 +1,6 @@
 package com.example.testtask.api;
 
+import com.example.testtask.api.data.ErrorResponse;
 import com.example.testtask.service.RequestException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.postgresql.util.PSQLException;

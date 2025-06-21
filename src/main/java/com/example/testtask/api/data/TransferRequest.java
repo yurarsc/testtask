@@ -1,4 +1,4 @@
-package com.example.testtask.api;
+package com.example.testtask.api.data;
 
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;

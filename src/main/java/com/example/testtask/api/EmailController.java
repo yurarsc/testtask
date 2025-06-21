@@ -1,7 +1,9 @@
 package com.example.testtask.api;
 
+import com.example.testtask.api.data.EmailRequest;
+import com.example.testtask.api.data.EmailResponse;
 import com.example.testtask.auth.JWTHelper;
-import com.example.testtask.dao.EmailData;
+import com.example.testtask.dao.entities.EmailData;
 import com.example.testtask.service.EmailService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;

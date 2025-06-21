@@ -1,8 +1,8 @@
-package com.example.testtask.api;
+package com.example.testtask.api.data;
 
-import com.example.testtask.dao.EmailData;
-import com.example.testtask.dao.PhoneData;
-import com.example.testtask.dao.User;
+import com.example.testtask.dao.entities.EmailData;
+import com.example.testtask.dao.entities.PhoneData;
+import com.example.testtask.dao.entities.User;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

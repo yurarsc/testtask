@@ -1,4 +1,4 @@
-package com.example.testtask.api;
+package com.example.testtask.api.data;
 
 import java.time.ZonedDateTime;
 

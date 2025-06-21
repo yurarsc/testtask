@@ -1,5 +1,6 @@
 package com.example.testtask.api;
 
+import com.example.testtask.api.data.TransferRequest;
 import com.example.testtask.auth.JWTHelper;
 import com.example.testtask.service.AccountService;
 import com.example.testtask.service.RequestException;

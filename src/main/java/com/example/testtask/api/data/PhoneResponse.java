@@ -1,6 +1,6 @@
-package com.example.testtask.api;
+package com.example.testtask.api.data;
 
-import com.example.testtask.dao.PhoneData;
+import com.example.testtask.dao.entities.PhoneData;
 
 public record PhoneResponse(Long id, String phone) {
     public PhoneResponse(PhoneData phoneData) {

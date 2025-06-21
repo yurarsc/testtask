@@ -1,4 +1,4 @@
-package com.example.testtask.dao;
+package com.example.testtask.dao.entities;
 
 import jakarta.persistence.*;
 

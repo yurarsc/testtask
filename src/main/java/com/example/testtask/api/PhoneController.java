@@ -1,7 +1,9 @@
 package com.example.testtask.api;
 
+import com.example.testtask.api.data.PhoneRequest;
+import com.example.testtask.api.data.PhoneResponse;
 import com.example.testtask.auth.JWTHelper;
-import com.example.testtask.dao.PhoneData;
+import com.example.testtask.dao.entities.PhoneData;
 import com.example.testtask.service.PhoneService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;

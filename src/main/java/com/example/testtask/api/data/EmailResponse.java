@@ -1,6 +1,6 @@
-package com.example.testtask.api;
+package com.example.testtask.api.data;
 
-import com.example.testtask.dao.EmailData;
+import com.example.testtask.dao.entities.EmailData;
 
 public record EmailResponse(Long id, String email) {
     public EmailResponse(EmailData emailData) {

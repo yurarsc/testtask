@@ -1,4 +1,4 @@
-package com.example.testtask.api;
+package com.example.testtask.api.data;
 
 import org.springframework.util.StringUtils;
 

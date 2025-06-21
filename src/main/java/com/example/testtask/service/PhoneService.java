@@ -2,6 +2,8 @@ package com.example.testtask.service;
 
 import com.example.testtask.cache.CacheHelper;
 import com.example.testtask.dao.*;
+import com.example.testtask.dao.entities.PhoneData;
+import com.example.testtask.dao.entities.User;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;

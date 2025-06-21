@@ -1,7 +1,9 @@
 package com.example.testtask.api;
 
+import com.example.testtask.api.data.AuthRequest;
+import com.example.testtask.api.data.AuthResponse;
 import com.example.testtask.auth.JWTHelper;
-import com.example.testtask.dao.User;
+import com.example.testtask.dao.entities.User;
 import com.example.testtask.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
