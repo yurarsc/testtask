@@ -3,10 +3,11 @@ package com.example.testtask.dao.entities;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "user", schema = "public")
+@NamedEntityGraph(name = "user_entity_graph", attributeNodes = {@NamedAttributeNode("emails"),@NamedAttributeNode("phones")})
 public class User {
     @Id
     private Long id;
@@ -16,10 +17,10 @@ public class User {
     private String password;
 
     @OneToMany(mappedBy = "user")
-    private List<EmailData> emails;
+    private Set<EmailData> emails;
 
     @OneToMany(mappedBy = "user")
-    private List<PhoneData> phones;
+    private Set<PhoneData> phones;
 
     @OneToOne(mappedBy = "user")
     private Account account;
@@ -47,21 +48,6 @@ public class User {
     public void setDateOfBirth(LocalDateTime dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
-//    public LocalDate getDateOfBirth() {
-//        return dateOfBirth;
-//    }
-//
-//    public void setDateOfBirth(LocalDate dateOfBirth) {
-//        this.dateOfBirth = dateOfBirth;
-//    }
-
-//    public Date getDateOfBirth() {
-//        return dateOfBirth;
-//    }
-//
-//    public void setDateOfBirth(Date dateOfBirth) {
-//        this.dateOfBirth = dateOfBirth;
-//    }
 
     public String getPassword() {
         return password;
@@ -71,19 +57,19 @@ public class User {
         this.password = password;
     }
 
-    public List<EmailData> getEmails() {
+    public Set<EmailData> getEmails() {
         return emails;
     }
 
-    public void setEmails(List<EmailData> emails) {
+    public void setEmails(Set<EmailData> emails) {
         this.emails = emails;
     }
 
-    public List<PhoneData> getPhones() {
+    public Set<PhoneData> getPhones() {
         return phones;
     }
 
-    public void setPhones(List<PhoneData> phones) {
+    public void setPhones(Set<PhoneData> phones) {
         this.phones = phones;
     }
 

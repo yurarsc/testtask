@@ -3,6 +3,7 @@ package com.example.testtask.dao;
 import com.example.testtask.dao.entities.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -24,6 +25,7 @@ public interface UserRepository extends CrudRepository<User, Long> {
                 (:email is null or e.email = :email)
             
             """)
+    @EntityGraph(type = EntityGraph.EntityGraphType.FETCH, value = "user_entity_graph")
     Page<User> find(@Param("dateOfBirth") LocalDateTime dateOfBirth,
                     @Param("phone") String phone,
                     @Param("name") String name,

@@ -7,6 +7,7 @@ import com.example.testtask.dao.entities.User;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Set;
 
 public record UserResponse(Long id,
                            String name,
@@ -24,13 +25,13 @@ public record UserResponse(Long id,
         );
     }
 
-    private static List<EmailResponse> emailResponses(List<EmailData> emailData) {
+    private static List<EmailResponse> emailResponses(Set<EmailData> emailData) {
         return emailData.stream()
                 .map(it -> new EmailResponse(it.getId(), it.getEmail()))
                 .toList();
     }
 
-    private static List<PhoneResponse> phoneResponses(List<PhoneData> phoneData) {
+    private static List<PhoneResponse> phoneResponses(Set<PhoneData> phoneData) {
         return phoneData.stream()
                 .map(it -> new PhoneResponse(it.getId(), it.getPhone()))
                 .toList();
